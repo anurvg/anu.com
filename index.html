@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Anurag</title>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   <style>
@@ -11,7 +11,6 @@
       padding: 0;
       box-sizing: border-box;
     }
-
     body {
       font-family: 'Press Start 2P', cursive;
       background: url('assets/m.jpg') no-repeat center center/cover;
@@ -26,7 +25,7 @@
 
     header h1 {
       font-size: 2.5rem;
-      color: #ffffff;
+      color: #e38dac; /* Pig color */
       animation: fadeInDown 1.5s ease-in-out;
     }
 
@@ -35,31 +34,14 @@
     }
 
     nav a {
+      color: #29e3e3; /* Diamond color */
       margin: 0 1rem;
       text-decoration: none;
       font-weight: 600;
-      color: #00ffff;
-      position: relative;
-    }
-
-    nav a::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.5), transparent);
-      animation: enchantShimmer 3s infinite;
-      z-index: -1;
-    }
-
-    @keyframes enchantShimmer {
-      0% { transform: translateX(-100%) rotate(0deg); }
-      50% { transform: translateX(100%) rotate(5deg); }
-      100% { transform: translateX(-100%) rotate(-5deg); }
     }
 
     nav a:hover {
-      color: #00ccff;
+      color: #1ccccc;
     }
 
     .section {
@@ -75,16 +57,16 @@
     .section h2 {
       font-size: 1.4rem;
       margin-bottom: 1rem;
-      color: #e38dac; /* pig pink for "WELCOME TO THE REALM" */
+      color: #7a5c42; /* Dirt color */
     }
 
     .section p {
       font-size: 0.8rem;
       color: #3fff00;
-      animation: typewriter 4s steps(40, end) infinite;
       white-space: nowrap;
       overflow: hidden;
       border-right: 2px solid #3fff00;
+      animation: typewriter 2s steps(40, end) infinite;
     }
 
     footer {
@@ -109,49 +91,47 @@
       z-index: 1000;
     }
 
-    #music-toggle {
+    .music-toggle {
       position: fixed;
       top: 10px;
       right: 10px;
-      background: transparent;
-      color: #ccc;
-      font-size: 0.55rem;
+      background: none;
       border: none;
+      color: rgba(255, 255, 255, 0.4);
+      font-size: 0.5rem;
       cursor: pointer;
       font-family: 'Press Start 2P', cursive;
       z-index: 1000;
     }
 
-    #bg-toggle {
+    .bg-toggle {
       position: fixed;
-      top: 40px;
-      right: 10px;
-      background: transparent;
-      color: #ccc;
-      font-size: 0.55rem;
+      top: 10px;
+      left: 10px;
+      background: none;
       border: none;
+      color: rgba(255, 255, 255, 0.4);
+      font-size: 0.5rem;
       cursor: pointer;
       font-family: 'Press Start 2P', cursive;
       z-index: 1000;
     }
 
-    #nether {
-      text-align: center;
-      margin-top: 3rem;
+    #nether-update {
+      margin-top: 1rem;
       font-size: 0.6rem;
-      color: #00ff00;
-      animation: flickerFast 0.4s infinite alternate;
-    }
-
-    @keyframes flickerFast {
-      0% { opacity: 1; }
-      50% { opacity: 0.2; }
-      100% { opacity: 1; }
+      color: #3fff00;
+      animation: flickerFast 0.15s infinite alternate;
     }
 
     @keyframes typewriter {
       0% { width: 0 }
       100% { width: 100% }
+    }
+
+    @keyframes flickerFast {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
     }
 
     @keyframes fadeInDown {
@@ -172,8 +152,8 @@
 </head>
 <body>
 
-  <button id="music-toggle">MUSIC OFF</button>
-  <button id="bg-toggle">SWITCH BG</button>
+  <button class="music-toggle" onclick="toggleMusic()">MUSIC ON/OFF</button>
+  <button class="bg-toggle" onclick="toggleBG()">SWITCH BG</button>
 
   <header>
     <h1>ANURAG</h1>
@@ -187,10 +167,9 @@
 
   <section class="section">
     <h2>WELCOME TO THE REALM</h2>
-    <p id="typewriter-text">Here lives the pixel mind of a curious creator. Dig deeper.</p>
+    <p id="typewriter-text"></p>
+    <div id="nether-update">NETHER UPDATE SOON</div>
   </section>
-
-  <div id="nether">NETHER UPDATE SOON</div>
 
   <footer>
     &copy; 2025 Anurag | Powered by Redstone 🧱
@@ -198,6 +177,7 @@
 
   <button class="feedback-btn" onclick="window.location.href='https://anurvg.github.io/feedback.github.io/'">FEEDBACK</button>
 
+  <!-- Background Music -->
   <audio id="bg-music" autoplay loop>
     <source src="assets/c4.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
@@ -205,37 +185,60 @@
 
   <script>
     const music = document.getElementById('bg-music');
-    const musicToggle = document.getElementById('music-toggle');
-    const bgToggle = document.getElementById('bg-toggle');
-    let musicPlaying = true;
-    let isDay = true;
+    const typewriter = document.getElementById('typewriter-text');
+    const lines = [
+      "Here lives the pixel mind of a curious creator.",
+      "Breaking blocks and boundaries.",
+      "Where code meets craft.",
+      "Dig deeper..."
+    ];
+    let lineIndex = 0;
 
-    music.volume = 0.5;
+    function typeText() {
+      let line = lines[lineIndex];
+      let i = 0;
+      typewriter.textContent = "";
+      const interval = setInterval(() => {
+        if (i < line.length) {
+          typewriter.textContent += line[i];
+          i++;
+        } else {
+          clearInterval(interval);
+          setTimeout(() => {
+            lineIndex = (lineIndex + 1) % lines.length;
+            typeText();
+          }, 1000);
+        }
+      }, 50);
+    }
 
-    music.play().catch(() => {
-      document.body.addEventListener('click', () => music.play(), { once: true });
-    });
+    typeText();
 
-    musicToggle.addEventListener('click', () => {
-      if (musicPlaying) {
-        music.pause();
-        musicToggle.innerText = "MUSIC ON";
-      } else {
+    function toggleMusic() {
+      if (music.paused) {
         music.play();
-        musicToggle.innerText = "MUSIC OFF";
-      }
-      musicPlaying = !musicPlaying;
-    });
-
-    bgToggle.addEventListener('click', () => {
-      if (isDay) {
-        document.body.style.background = "url('assets/nightm.jpg') no-repeat center center/cover";
       } else {
-        document.body.style.background = "url('assets/m.jpg') no-repeat center center/cover";
+        music.pause();
       }
-      isDay = !isDay;
+    }
+
+    function toggleBG() {
+      const current = document.body.style.backgroundImage;
+      if (current.includes('m.jpg')) {
+        document.body.style.backgroundImage = "url('assets/nightm.jpg')";
+      } else {
+        document.body.style.backgroundImage = "url('assets/m.jpg')";
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      music.volume = 0.5;
+      music.play().catch(() => {
+        document.body.addEventListener('click', () => {
+          music.play();
+        }, { once: true });
+      });
     });
   </script>
-
 </body>
   </html>
