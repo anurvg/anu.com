@@ -3,7 +3,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Anurag</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   <style>
     * {
@@ -12,162 +11,98 @@
       box-sizing: border-box;
     }
     body {
-      font-family: 'Inter', sans-serif;
-      background-color: #0a0a0a;
-      color: #dcdcdc;
+      font-family: 'Press Start 2P', cursive;
+      background: url('assets/m.jpg') no-repeat center center/cover;
+      color: #3fff00;
       overflow-x: hidden;
-    }#main-content {
-  opacity: 0;
-  animation: fadeIn 1.5s ease-out 5s forwards;
-}
-
-#minecraft-content {
-  display: none;
-  font-family: 'Press Start 2P', cursive;
-  background: url('assets/m.jpg') no-repeat center center/cover;
-  color: #3fff00;
-  padding-bottom: 3rem;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes slideDown {
-  0% { transform: translateY(-100vh); opacity: 0; }
-  100% { transform: translateY(0); opacity: 1; }
-}
-
-@keyframes flicker {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.3; }
-}
-
-.minecraft-animate {
-  animation: slideDown 1s ease-in-out;
-}
-
-header, nav, section, footer {
+    }header, nav, section, footer {
   padding: 2rem;
   text-align: center;
 }
 
 header h1 {
-  font-size: 3rem;
-  color: #ffffff;
+  font-size: 2rem;
+  color: #fff;
+  text-shadow: 2px 2px #000;
 }
 
 nav a {
-  color: #cccccc;
+  color: #3fff00;
   margin: 0 1rem;
   text-decoration: none;
-  font-weight: 600;
+  display: inline-block;
 }
 
 nav a:hover {
-  color: #8ab4f8;
+  text-decoration: underline;
 }
 
 .section {
   max-width: 820px;
   margin: 2rem auto;
-  background-color: #121212;
-  border: 1px solid #1f1f1f;
+  background-color: rgba(0,0,0,0.3);
+  border: 2px dashed #3fff00;
   border-radius: 14px;
-  box-shadow: 0 6px 25px rgba(0,0,0,0.4);
+  padding: 1rem;
+  backdrop-filter: blur(5px);
 }
 
 .section h2 {
   color: #8ab4f8;
-  font-size: 1.6rem;
+  font-size: 1.1rem;
   margin-bottom: 1rem;
-  border-bottom: 1px solid #2e2e2e;
-  padding-bottom: 0.4rem;
+}
+
+.section p.flicker {
+  animation: flicker 2s infinite;
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
 }
 
 footer {
-  font-size: 0.9rem;
-  color: #aaa;
+  font-size: 0.8rem;
+  color: #ccc;
 }
 
-/* Minecraft mode overrides */
-#minecraft-content nav a {
-  color: #3fff00;
-}
-#minecraft-content .section {
-  background-color: rgba(0,0,0,0.7);
-  border: 2px dashed #3fff00;
-  color: #3fff00;
-}
-#minecraft-content footer {
-  color: #aaa;
-}
-
-.feedback-box {
+.feedback-btn {
   position: fixed;
   bottom: 20px;
   left: 20px;
   background-color: #3fff00;
   color: #000;
+  border: none;
   padding: 8px 14px;
   border-radius: 8px;
-  font-size: 0.75rem;
+  font-weight: bold;
+  cursor: pointer;
   font-family: 'Press Start 2P', cursive;
-  z-index: 1000;
-}
-.feedback-box a {
-  text-decoration: none;
-  color: #000;
-}
-.feedback-box:hover {
-  background-color: #2ccc00;
 }
 
   </style>
 </head>
 <body>
-  <!-- Professional Theme -->
-  <div id="main-content">
-    <header>
-      <h1>Anurag</h1>
-    </header>
-    <nav>
-      <a href="https://anurvg.github.io/aboutc.github.io/">About</a>
-      <a href="#">Projects</a>
-      <a href="https://www.instagram.com/anurvg.r" target="_blank">Instagram</a>
-    </nav>
-    <section class="section">
-      <h2>Welcome</h2>
-      <p>This is a clean and professional intro to a deeply crafted space.</p>
-    </section>
-    <footer>
-      &copy; 2025 Anurag | Crafted by a Cinephile Coder
-    </footer>
-  </div>  <!-- Minecraft Theme -->  <div id="minecraft-content">
-    <header class="minecraft-animate">
-      <h1>ANURAG</h1>
-    </header>
-    <nav class="minecraft-animate">
-      <a href="https://anurvg.github.io/aboutc.github.io/">ABOUT</a>
-      <a href="#">PROJECTS</a>
-      <a href="https://www.instagram.com/anurvg.r" target="_blank">INSTAGRAM</a>
-    </nav>
-    <section class="section minecraft-animate">
-      <h2 style="animation: flicker 1.2s infinite alternate;">WELCOME TO THE BLOCKS</h2>
-      <p>Here lives the pixel mind of a curious creator. Dig deeper.</p>
-    </section>
-    <footer class="minecraft-animate">
-      &copy; 2025 Anurag | Powered by Redstone 🧱
-    </footer>
-    <div class="feedback-box">
-      <a href="https://anurvg.github.io/feedback.github.io/" target="_blank">Feedback</a>
-    </div>
-  </div>  <script>
-    setTimeout(() => {
-      document.getElementById('main-content').style.display = 'none';
-      const mc = document.getElementById('minecraft-content');
-      mc.style.display = 'block';
-    }, 5000);
+  <header>
+    <h1>ANURAG</h1>
+  </header>
+  <nav>
+    <a href="https://anurvg.github.io/aboutc.github.io/">ABOUT</a>
+    <a href="#">PROJECTS</a>
+    <a href="https://www.instagram.com/anurvg.r/" target="_blank">INSTAGRAM</a>
+  </nav>  <section class="section">
+    <h2>WELCOME TO THE BLOCKS</h2>
+    <p class="flicker">Here lives the pixel mind of a curious creator. Dig deeper.</p>
+  </section>  <footer>
+    &copy; 2025 Anurag | Powered by Redstone 🧱
+  </footer><a class="feedback-btn" href="https://anurvg.github.io/feedback.github.io/" target="_blank">Feedback</a>
+
+  <audio id="bg-music" autoplay loop>
+    <source src="assets/c4.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>  <script>
+    const music = document.getElementById("bg-music");
+    music.volume = 0.4;
   </script></body>
-  </html>
+</html>
