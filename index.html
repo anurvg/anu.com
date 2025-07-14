@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Anurag</title>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   <style>
@@ -15,7 +15,7 @@
     body {
       font-family: 'Press Start 2P', cursive;
       background: url('assets/m.jpg') no-repeat center center/cover;
-      color: #ffffff;
+      color: #3fff00;
       overflow-x: hidden;
     }
 
@@ -35,21 +35,39 @@
     }
 
     nav a {
-      color: #3cf2f2;
+      color: #6fd3ff;
       margin: 0 1rem;
       text-decoration: none;
       font-weight: 600;
+      position: relative;
+    }
+
+    nav a::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(120deg, rgba(111, 211, 255, 0.1), rgba(255, 255, 255, 0.2), rgba(111, 211, 255, 0.1));
+      animation: shimmer 2s infinite;
+      z-index: -1;
+    }
+
+    @keyframes shimmer {
+      0% { transform: translateX(-100%) rotate(0deg); }
+      50% { transform: translateX(100%) rotate(5deg); }
+      100% { transform: translateX(-100%) rotate(-5deg); }
     }
 
     nav a:hover {
-      color: #00cccc;
+      color: #8ad9ff;
     }
 
     .section {
       max-width: 800px;
       margin: 2rem auto;
       background-color: rgba(0, 0, 0, 0.35);
-      border: 2px dashed #3cf2f2;
       border-radius: 10px;
       padding: 2rem;
       backdrop-filter: blur(3px);
@@ -60,16 +78,21 @@
       font-size: 1.4rem;
       margin-bottom: 1rem;
       animation: flicker 1.5s infinite alternate;
-      color: #4e342e;
+      color: #ffb6c1; /* Pig-pink */
     }
 
     .section p {
       font-size: 0.8rem;
-      color: #5fff5f;
-      height: 2rem;
+      color: #3fff00;
+      animation: typewriter 3s steps(40) infinite alternate;
       white-space: nowrap;
       overflow: hidden;
-      border-right: 2px solid #5fff5f;
+      border-right: 2px solid #3fff00;
+    }
+
+    @keyframes typewriter {
+      from { width: 0 }
+      to { width: 100% }
     }
 
     footer {
@@ -83,7 +106,7 @@
       position: fixed;
       bottom: 15px;
       left: 15px;
-      background-color: #3daee9;
+      background-color: #3f76e4;
       color: #000;
       padding: 10px 14px;
       font-size: 0.6rem;
@@ -94,13 +117,22 @@
       z-index: 1000;
     }
 
+    /* Music Toggle Button */
+    .music-toggle {
+      position: fixed;
+      top: 10px;
+      right: 15px;
+      background: transparent;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.6rem;
+      font-family: 'Press Start 2P', cursive;
+      cursor: pointer;
+      z-index: 1000;
+    }
+
     @keyframes flicker {
-      0%, 18%, 22%, 25%, 53%, 57%, 100% {
-        opacity: 1;
-      }
-      20%, 24%, 55% {
-        opacity: 0.3;
-      }
+      0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity: 1; }
+      20%, 24%, 55% { opacity: 0.3; }
     }
 
     @keyframes fadeInDown {
@@ -117,9 +149,26 @@
       from { opacity: 0; }
       to { opacity: 1; }
     }
+
+    .nether-text {
+      text-align: center;
+      font-size: 0.65rem;
+      margin-top: 1.5rem;
+      color: rgba(255, 0, 0, 0.7);
+      animation: netherBlink 0.15s infinite;
+      filter: blur(1px);
+    }
+
+    @keyframes netherBlink {
+      0% { opacity: 1; }
+      50% { opacity: 0.1; }
+      100% { opacity: 1; }
+    }
   </style>
 </head>
 <body>
+
+  <button class="music-toggle" onclick="toggleMusic()">MUSIC</button>
 
   <header>
     <h1>ANURAG</h1>
@@ -132,28 +181,36 @@
   </nav>
 
   <section class="section">
-    <h2>WELCOME TO THE BLOCKS</h2>
-    <p id="typewriter"></p>
+    <h2>WELCOME TO THE REALM</h2>
+    <p id="changing-text">Here lives the pixel mind of a curious creator.</p>
   </section>
 
   <footer>
     &copy; 2025 Anurag | Powered by Redstone 🧱
   </footer>
 
+  <div class="nether-text">NETHER UPDATE SOON</div>
+
   <button class="feedback-btn" onclick="window.location.href='https://anurvg.github.io/feedback.github.io/'">FEEDBACK</button>
 
-  <!-- Background Music -->
   <audio id="bg-music" autoplay loop>
     <source src="assets/c4.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
   </audio>
 
   <script>
-    // Audio fallback
-    window.addEventListener('DOMContentLoaded', () => {
-      const music = document.getElementById('bg-music');
-      music.volume = 0.5;
+    const music = document.getElementById('bg-music');
 
+    function toggleMusic() {
+      if (music.paused) {
+        music.play();
+      } else {
+        music.pause();
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      music.volume = 0.5;
       music.play().catch(() => {
         const clickToPlay = () => {
           music.play();
@@ -161,35 +218,21 @@
         };
         document.body.addEventListener('click', clickToPlay);
       });
+
+      const lines = [
+        "Here lives the pixel mind of a curious creator.",
+        "Dig deeper into crafted chaos.",
+        "Built with blocks & brilliance.",
+        "Scroll like it's survival mode.",
+        "Crafting pixels with poetry."
+      ];
+      let i = 0;
+      const txt = document.getElementById("changing-text");
+      setInterval(() => {
+        txt.textContent = lines[i];
+        i = (i + 1) % lines.length;
+      }, 2500);
     });
-
-    // Typewriter effect
-    const lines = [
-      "Here lives the pixel mind of a curious creator.",
-      "Dig deeper...",
-      "Press Start to begin.",
-      "This world isn’t flat, it’s made of blocks."
-    ];
-
-    let currentLine = 0;
-    let currentChar = 0;
-    const typeEl = document.getElementById('typewriter');
-
-    function type() {
-      if (currentChar <= lines[currentLine].length) {
-        typeEl.textContent = lines[currentLine].substring(0, currentChar);
-        currentChar++;
-        setTimeout(type, 50); // typing speed
-      } else {
-        setTimeout(() => {
-          currentChar = 0;
-          currentLine = (currentLine + 1) % lines.length;
-          type();
-        }, 1200); // delay before next line
-      }
-    }
-
-    type();
   </script>
 </body>
-  </html>
+</html>
