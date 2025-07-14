@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Anurag</title>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   <style>
@@ -35,39 +35,31 @@
     }
 
     nav a {
-      color: #3ffbff;
       margin: 0 1rem;
       text-decoration: none;
       font-weight: 600;
+      color: #00ffff;
       position: relative;
     }
 
     nav a::before {
-      content: "";
+      content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(120deg, rgba(63, 251, 255, 0.05), rgba(255, 255, 255, 0.1), rgba(63, 251, 255, 0.05));
-      animation: shimmer 3s infinite;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.5), transparent);
+      animation: enchantShimmer 3s infinite;
       z-index: -1;
     }
 
-    @keyframes shimmer {
-      0% {
-        transform: translateX(-100%) rotate(0deg);
-      }
-      50% {
-        transform: translateX(100%) rotate(5deg);
-      }
-      100% {
-        transform: translateX(-100%) rotate(-5deg);
-      }
+    @keyframes enchantShimmer {
+      0% { transform: translateX(-100%) rotate(0deg); }
+      50% { transform: translateX(100%) rotate(5deg); }
+      100% { transform: translateX(-100%) rotate(-5deg); }
     }
 
     nav a:hover {
-      color: #00e6ff;
+      color: #00ccff;
     }
 
     .section {
@@ -83,14 +75,13 @@
     .section h2 {
       font-size: 1.4rem;
       margin-bottom: 1rem;
-      animation: flicker 1.5s infinite alternate;
-      color: #7a5c42; /* Dirt color */
+      color: #e38dac; /* pig pink for "WELCOME TO THE REALM" */
     }
 
     .section p {
       font-size: 0.8rem;
       color: #3fff00;
-      animation: typewriter 5s steps(40) infinite;
+      animation: typewriter 4s steps(40, end) infinite;
       white-space: nowrap;
       overflow: hidden;
       border-right: 2px solid #3fff00;
@@ -118,37 +109,49 @@
       z-index: 1000;
     }
 
-    .music-btn {
+    #music-toggle {
       position: fixed;
-      top: 15px;
-      right: 15px;
-      background: none;
-      color: rgba(255, 255, 255, 0.4);
-      font-size: 0.6rem;
-      font-family: 'Press Start 2P', cursive;
+      top: 10px;
+      right: 10px;
+      background: transparent;
+      color: #ccc;
+      font-size: 0.55rem;
+      border: none;
       cursor: pointer;
+      font-family: 'Press Start 2P', cursive;
       z-index: 1000;
     }
 
-    .theme-btn {
+    #bg-toggle {
       position: fixed;
-      top: 15px;
-      right: 70px;
-      background: none;
-      color: rgba(255, 255, 255, 0.4);
-      font-size: 0.6rem;
-      font-family: 'Press Start 2P', cursive;
+      top: 40px;
+      right: 10px;
+      background: transparent;
+      color: #ccc;
+      font-size: 0.55rem;
+      border: none;
       cursor: pointer;
+      font-family: 'Press Start 2P', cursive;
       z-index: 1000;
     }
 
-    @keyframes flicker {
-      0%, 18%, 22%, 25%, 53%, 57%, 100% {
-        opacity: 1;
-      }
-      20%, 24%, 55% {
-        opacity: 0.3;
-      }
+    #nether {
+      text-align: center;
+      margin-top: 3rem;
+      font-size: 0.6rem;
+      color: #00ff00;
+      animation: flickerFast 0.4s infinite alternate;
+    }
+
+    @keyframes flickerFast {
+      0% { opacity: 1; }
+      50% { opacity: 0.2; }
+      100% { opacity: 1; }
+    }
+
+    @keyframes typewriter {
+      0% { width: 0 }
+      100% { width: 100% }
     }
 
     @keyframes fadeInDown {
@@ -165,14 +168,13 @@
       from { opacity: 0; }
       to { opacity: 1; }
     }
-
-    @keyframes typewriter {
-      0% { width: 0; }
-      100% { width: 100%; }
-    }
   </style>
 </head>
 <body>
+
+  <button id="music-toggle">MUSIC OFF</button>
+  <button id="bg-toggle">SWITCH BG</button>
+
   <header>
     <h1>ANURAG</h1>
   </header>
@@ -185,53 +187,55 @@
 
   <section class="section">
     <h2>WELCOME TO THE REALM</h2>
-    <p>Here lives the pixel mind of a curious creator. Dig deeper.</p>
+    <p id="typewriter-text">Here lives the pixel mind of a curious creator. Dig deeper.</p>
   </section>
+
+  <div id="nether">NETHER UPDATE SOON</div>
 
   <footer>
     &copy; 2025 Anurag | Powered by Redstone 🧱
   </footer>
 
   <button class="feedback-btn" onclick="window.location.href='https://anurvg.github.io/feedback.github.io/'">FEEDBACK</button>
-  <button class="music-btn" onclick="toggleMusic()">MUSIC</button>
-  <button class="theme-btn" onclick="toggleTheme()">THEME</button>
 
-  <!-- Background Music -->
   <audio id="bg-music" autoplay loop>
     <source src="assets/c4.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
   </audio>
 
   <script>
-    // Music fallback
     const music = document.getElementById('bg-music');
-    function toggleMusic() {
-      if (music.paused) {
-        music.play();
-      } else {
-        music.pause();
-      }
-    }
+    const musicToggle = document.getElementById('music-toggle');
+    const bgToggle = document.getElementById('bg-toggle');
+    let musicPlaying = true;
+    let isDay = true;
 
-    window.addEventListener('DOMContentLoaded', () => {
-      music.volume = 0.5;
-      music.play().catch(() => {
-        const clickToPlay = () => {
-          music.play();
-          document.body.removeEventListener('click', clickToPlay);
-        };
-        document.body.addEventListener('click', clickToPlay);
-      });
+    music.volume = 0.5;
+
+    music.play().catch(() => {
+      document.body.addEventListener('click', () => music.play(), { once: true });
     });
 
-    // Theme toggle logic
-    let isNight = false;
-    function toggleTheme() {
-      document.body.style.backgroundImage = isNight
-        ? "url('assets/m.jpg')"
-        : "url('assets/nightm.jpg')";
-      isNight = !isNight;
-    }
+    musicToggle.addEventListener('click', () => {
+      if (musicPlaying) {
+        music.pause();
+        musicToggle.innerText = "MUSIC ON";
+      } else {
+        music.play();
+        musicToggle.innerText = "MUSIC OFF";
+      }
+      musicPlaying = !musicPlaying;
+    });
+
+    bgToggle.addEventListener('click', () => {
+      if (isDay) {
+        document.body.style.background = "url('assets/nightm.jpg') no-repeat center center/cover";
+      } else {
+        document.body.style.background = "url('assets/m.jpg') no-repeat center center/cover";
+      }
+      isDay = !isDay;
+    });
   </script>
+
 </body>
-</html>
+  </html>
