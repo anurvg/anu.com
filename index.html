@@ -1,42 +1,51 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Anurag</title>
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet"/>
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
+
     body {
       font-family: 'Press Start 2P', cursive;
       background: url('assets/m.jpg') no-repeat center center/cover;
       color: #3fff00;
       overflow-x: hidden;
+      transition: background 0.6s ease-in-out;
     }
+
     header, nav, section, footer {
       padding: 2rem;
       text-align: center;
     }
+
     header h1 {
       font-size: 2.5rem;
       color: #ffffff;
       animation: fadeInDown 1.5s ease-in-out;
     }
+
     nav {
       animation: fadeInDown 1.5s ease-in-out;
     }
+
     nav a {
-      color: #4de3ff; /* Diamond blue */
+      color: #00f6ff; /* Minecraft diamond-ish */
       margin: 0 1rem;
       text-decoration: none;
       font-weight: 600;
     }
+
     nav a:hover {
-      color: #00ccff;
+      color: #5beeff;
     }
+
     .section {
       max-width: 800px;
       margin: 2rem auto;
@@ -46,34 +55,35 @@
       backdrop-filter: blur(3px);
       animation: fadeInUp 1.5s ease-in-out;
     }
+
     .section h2 {
       font-size: 1.4rem;
       margin-bottom: 1rem;
-      color: #f38ba0; /* Pig color */
       animation: flicker 1.5s infinite alternate;
+      color: #f38ba0; /* Pig color */
     }
+
     .section p {
       font-size: 0.8rem;
       color: #3fff00;
-      overflow: hidden;
-      border-right: 2px solid #3fff00;
+      animation: typewriter 5s steps(50, end) infinite alternate;
       white-space: nowrap;
-      animation: typing 4s steps(40, end) infinite, blink 0.75s step-end infinite;
+      overflow: hidden;
+      border-right: 1px solid #3fff00;
     }
-    @keyframes typing {
-      from { width: 0; }
-      to { width: 100%; }
+
+    @keyframes typewriter {
+      0% { width: 0 }
+      100% { width: 100% }
     }
-    @keyframes blink {
-      0%, 100% { border-color: transparent; }
-      50% { border-color: #3fff00; }
-    }
+
     footer {
       font-size: 0.75rem;
       color: #d3d3d3;
       margin-top: 2rem;
       animation: fadeIn 2s ease-in;
     }
+
     .feedback-btn {
       position: fixed;
       bottom: 15px;
@@ -88,25 +98,33 @@
       font-family: 'Press Start 2P', cursive;
       z-index: 1000;
     }
-    .music-toggle {
+
+    .music-toggle, .bg-toggle {
       position: fixed;
-      top: 15px;
-      right: 15px;
-      background: transparent;
+      top: 12px;
+      right: 12px;
+      font-size: 0.55rem;
+      background: none;
+      color: rgba(255,255,255,0.6);
       border: none;
-      color: rgba(255, 255, 255, 0.6);
-      font-size: 0.5rem;
       cursor: pointer;
       font-family: 'Press Start 2P', cursive;
-      z-index: 1000;
+      z-index: 9999;
     }
-    .nether {
+
+    .bg-toggle {
+      top: 40px;
+    }
+
+    .nether-update {
       font-size: 0.6rem;
-      color: #3fff00;
       text-align: center;
-      animation: flicker-fast 0.3s infinite alternate;
       margin-top: 1.5rem;
+      color: #3fff00;
+      animation: flickerFast 0.3s infinite alternate;
+      filter: blur(0.4px);
     }
+
     @keyframes flicker {
       0%, 18%, 22%, 25%, 53%, 57%, 100% {
         opacity: 1;
@@ -115,19 +133,23 @@
         opacity: 0.3;
       }
     }
-    @keyframes flicker-fast {
+
+    @keyframes flickerFast {
       0% { opacity: 1; }
-      50% { opacity: 0.3; }
+      50% { opacity: 0.2; }
       100% { opacity: 1; }
     }
+
     @keyframes fadeInDown {
       from { transform: translateY(-100px); opacity: 0; }
       to { transform: translateY(0); opacity: 1; }
     }
+
     @keyframes fadeInUp {
       from { transform: translateY(100px); opacity: 0; }
       to { transform: translateY(0); opacity: 1; }
     }
+
     @keyframes fadeIn {
       from { opacity: 0; }
       to { opacity: 1; }
@@ -135,75 +157,64 @@
   </style>
 </head>
 <body>
+
   <header>
     <h1>ANURAG</h1>
   </header>
+
   <nav>
     <a href="https://anurvg.github.io/aboutc.github.io/" target="_blank">ABOUT</a>
     <a href="#">PROJECTS</a>
     <a href="https://www.instagram.com/anurvg.r/" target="_blank">INSTAGRAM</a>
   </nav>
+
   <section class="section">
     <h2>WELCOME TO THE REALM</h2>
-    <p id="typewriter"></p>
+    <p>Here lives the pixel mind of a curious creator. Dig deeper.</p>
+    <div class="nether-update">NETHER UPDATE SOON</div>
   </section>
+
   <footer>
     &copy; 2025 Anurag | Powered by Redstone 🧱
-    <div class="nether">NETHER UPDATE SOON</div>
   </footer>
+
   <button class="feedback-btn" onclick="window.location.href='https://anurvg.github.io/feedback.github.io/'">FEEDBACK</button>
   <button class="music-toggle" onclick="toggleMusic()">MUSIC</button>
+  <button class="bg-toggle" onclick="toggleBG()">SWITCH BG</button>
+
   <audio id="bg-music" autoplay loop>
     <source src="assets/c4.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
   </audio>
+
   <script>
-    const music = document.getElementById('bg-music');
-    music.volume = 0.5;music.play().catch(() => {
-  const clickToPlay = () => {
-    music.play();
-    document.body.removeEventListener('click', clickToPlay);
-  };
-  document.body.addEventListener('click', clickToPlay);
-});
+    // Audio Fallback
+    window.addEventListener('DOMContentLoaded', () => {
+      const music = document.getElementById('bg-music');
+      music.volume = 0.5;
+      music.play().catch(() => {
+        const clickToPlay = () => {
+          music.play();
+          document.body.removeEventListener('click', clickToPlay);
+        };
+        document.body.addEventListener('click', clickToPlay);
+      });
+    });
 
-function toggleMusic() {
-  if (music.paused) {
-    music.play();
-  } else {
-    music.pause();
-  }
-}
-
-const textLines = [
-  "Here lives the pixel mind of a curious creator.",
-  "Crafted in blocks, coded in silence.",
-  "Exploring the edges of simulation.",
-  "Wired to wonder."
-];
-let index = 0;
-const typewriter = document.getElementById("typewriter");
-
-function changeLine() {
-  typewriter.textContent = "";
-  let charIndex = 0;
-  const currentLine = textLines[index];
-
-  function typeChar() {
-    if (charIndex < currentLine.length) {
-      typewriter.textContent += currentLine.charAt(charIndex);
-      charIndex++;
-      setTimeout(typeChar, 50);
+    // Music Toggle
+    function toggleMusic() {
+      const music = document.getElementById('bg-music');
+      music.paused ? music.play() : music.pause();
     }
-  }
 
-  typeChar();
-  index = (index + 1) % textLines.length;
-}
-
-changeLine();
-setInterval(changeLine, 5000);
-
+    // Background Toggle
+    let isNight = false;
+    function toggleBG() {
+      document.body.style.background = isNight
+        ? "url('assets/m.jpg') no-repeat center center/cover"
+        : "url('assets/nightm.jpg') no-repeat center center/cover";
+      isNight = !isNight;
+    }
   </script>
 </body>
   </html>
