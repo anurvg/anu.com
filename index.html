@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head>
+<!DOCTYPE html><html lang="en">
+<head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Anurag</title>
@@ -51,28 +52,28 @@ nav a {
 }
 
 .section {
-  max-width: 95%;
+  max-width: 92%;
   margin: 0 auto;
   background-color: rgba(0, 0, 0, 0.3);
   border-radius: 10px;
-  padding: 1.5rem;
+  padding: 1.6rem 1.2rem;
   backdrop-filter: blur(2px);
   text-align: center;
 }
 
 .section h2 {
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: #ff87c5;
   margin-bottom: 1rem;
 }
 
 .typewriter-text {
-  font-size: 0.6rem;
+  font-size: 0.55rem;
   color: #00ff00;
   white-space: nowrap;
   overflow: hidden;
   border-right: 1px solid #00ff00;
-  animation: typing 6s steps(40, end) infinite, blink 0.7s step-end infinite;
+  animation: typing 5.5s steps(40, end) infinite, blink 0.7s step-end infinite;
 }
 
 @keyframes typing {
@@ -95,7 +96,7 @@ footer {
 
 .villager-popup {
   position: fixed;
-  bottom: 1.8rem;
+  bottom: 2.3rem;
   left: 10px;
   display: flex;
   align-items: flex-end;
@@ -116,8 +117,8 @@ footer {
 }
 
 @keyframes appearVillager {
-  from { opacity: 0; transform: translateX(-20px); }
-  to { opacity: 1; transform: translateX(0); }
+  0% { opacity: 0; transform: scale(0.8) translateX(-20px); }
+  100% { opacity: 1; transform: scale(1) translateX(0); }
 }
 
   </style>
@@ -125,21 +126,17 @@ footer {
 <body>
   <header>
     <h1>ANURAG</h1>
-  </header>
-  <div class="controls">
+  </header>  <div class="controls">
     <span id="musicToggle">MUSIC ON/OFF</span>
-    <span id="moodToggle">SWITCH MOOD</span>
-  </div>
-  <nav>
+    <span id="moodToggle">SWITCH TIME</span>
+  </div>  <nav>
     <a href="https://anurvg.github.io/aboutc.github.io/" target="_blank">ABOUT</a>
     <a href="#">PROJECTS</a>
     <a href="https://www.instagram.com/anurvg.r/" target="_blank">INSTAGRAM</a>
-  </nav>
-  <section class="section">
+  </nav>  <section class="section">
     <h2>WELCOME TO THE REALM</h2>
     <p class="typewriter-text" id="typewriter"></p>
-  </section>
-  <footer>
+  </section>  <footer>
     &copy; 2025 || Build by Anurag
   </footer>  <div class="villager-popup" id="villager" style="display: none;">
     <img src="assets/em.jpg" alt="Villager">
@@ -160,7 +157,6 @@ footer {
       "Want to join the block party?",
       "Every pixel has a story.",
       "Go ahead, dig deeper.",
-      "You found an easter egg!",
       "Oops! No creepers here.",
       "Feel the redstone magic.",
       "Good vibes only here.",
@@ -183,16 +179,13 @@ footer {
         setTimeout(showVillager, 6000);
       }, 3500);
     }
-
     setTimeout(showVillager, 5000);
 
-    // Music toggle
     const music = document.getElementById('bg-music');
     document.getElementById('musicToggle').onclick = () => {
       if (music.paused) music.play(); else music.pause();
     };
 
-    // Mood switch
     let isDay = true;
     document.getElementById('moodToggle').onclick = () => {
       document.body.style.backgroundImage = isDay
@@ -201,19 +194,19 @@ footer {
       isDay = !isDay;
     };
 
-    // Typewriter
     const typewriterLines = [
-      "Crafted thoughts in every pixel.",
-      "Exploring imagination through code.",
-      "A realm made of dreams and logic.",
-      "Infinite creativity lives here.",
-      "Press start to begin the story.",
-      "Pixels whisper secrets.",
-      "This isn't just code — it's magic.",
-      "Decode the blocky mysteries.",
-      "Touch grass. Then code it.",
-      "Anurag breathes creativity."
+      "Crafted with blocks, powered by code.",
+      "Every realm begins with an idea.",
+      "A Minecraft brain meets digital dreams.",
+      "This world? Built with bare hands.",
+      "No creepers, only creators.",
+      "Mining pixels, forging vision.",
+      "Spawn point: Imagination.",
+      "Redstone circuits of creativity.",
+      "Reality ends where command blocks begin.",
+      "Your cursor is your pickaxe."
     ];
+
     let twIndex = 0;
     let charIndex = 0;
     const twElem = document.getElementById('typewriter');
@@ -221,16 +214,16 @@ footer {
     function typeLine() {
       if (charIndex <= typewriterLines[twIndex].length) {
         twElem.textContent = typewriterLines[twIndex].substring(0, charIndex++);
-        setTimeout(typeLine, 60);
+        setTimeout(typeLine, 75);
       } else {
         setTimeout(() => {
           charIndex = 0;
           twIndex = (twIndex + 1) % typewriterLines.length;
           typeLine();
-        }, 1200);
+        }, 1800);
       }
     }
 
     typeLine();
   </script></body>
-  </html>
+    </html>
