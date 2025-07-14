@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,201 +11,204 @@
       padding: 0;
       box-sizing: border-box;
     }
+
     body {
       font-family: 'Press Start 2P', cursive;
       background: url('assets/daym.jpg') no-repeat center center/cover;
       color: #3fff00;
       overflow-x: hidden;
-    }header, nav, section, footer {
-  padding: 2rem;
-  text-align: center;
-}
+    }
 
-header h1 {
-  font-size: 2.5rem;
-  color: #ffffff;
-  animation: fadeInDown 1.5s ease-in-out;
-}
+    header, nav, section, footer {
+      padding: 2rem;
+      text-align: center;
+    }
 
-nav {
-  animation: fadeInDown 1.5s ease-in-out;
-}
+    header h1 {
+      font-size: 2.5rem;
+      color: #ffffff;
+      animation: fadeInDown 1.5s ease-in-out;
+    }
 
-nav a {
-  color: #00f2ff; /* Diamond-ish color */
-  margin: 0 1rem;
-  text-decoration: none;
-  font-weight: 600;
-}
+    nav {
+      animation: fadeInDown 1.5s ease-in-out;
+    }
 
-nav a:hover {
-  color: #00ccff;
-}
+    nav a {
+      color: #3fff00;
+      margin: 0 1rem;
+      text-decoration: none;
+      font-weight: 600;
+      position: relative;
+    }
 
-.section {
-  max-width: 800px;
-  margin: 2rem auto;
-  background-color: rgba(0, 0, 0, 0.35);
-  border-radius: 10px;
-  padding: 2rem;
-  backdrop-filter: blur(3px);
-  animation: fadeInUp 1.5s ease-in-out;
-}
+    nav a::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(120deg, rgba(63, 255, 0, 0.1), rgba(255, 255, 255, 0.2), rgba(63, 255, 0, 0.1));
+      animation: shimmer 2s infinite;
+      z-index: -1;
+    }
 
-.section h2 {
-  font-size: 1.4rem;
-  margin-bottom: 1rem;
-  color: #ffa8a8; /* Pig color */
-  animation: flicker 1.5s infinite alternate;
-}
+    @keyframes shimmer {
+      0% {
+        transform: translateX(-100%) rotate(0deg);
+      }
+      50% {
+        transform: translateX(100%) rotate(5deg);
+      }
+      100% {
+        transform: translateX(-100%) rotate(-5deg);
+      }
+    }
 
-.section p {
-  font-size: 0.8rem;
-  color: #3fff00;
-  animation: typewriter 3s steps(40, end) infinite;
-  overflow: hidden;
-  white-space: nowrap;
-  border-right: 2px solid #3fff00;
-}
+    nav a:hover {
+      color: #00cc44;
+    }
 
-footer {
-  font-size: 0.75rem;
-  color: #d3d3d3;
-  margin-top: 2rem;
-  animation: fadeIn 2s ease-in;
-}
+    .section {
+      max-width: 800px;
+      margin: 2rem auto;
+      background-color: rgba(0, 0, 0, 0.35);
+      border: 2px dashed #3fff00;
+      border-radius: 10px;
+      padding: 2rem;
+      backdrop-filter: blur(3px);
+      animation: fadeInUp 1.5s ease-in-out;
+    }
 
-.feedback-btn {
-  position: fixed;
-  bottom: 15px;
-  left: 15px;
-  background-color: #3f76e4;
-  color: #000;
-  padding: 10px 14px;
-  font-size: 0.6rem;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-family: 'Press Start 2P', cursive;
-  z-index: 1000;
-}
+    .section h2 {
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+      animation: flicker 1.5s infinite alternate;
+      color: #7a5c42;
+    }
 
-.music-btn {
-  position: fixed;
-  bottom: 15px;
-  right: 15px;
-  background: none;
-  color: #d3d3d3;
-  font-size: 0.6rem;
-  cursor: pointer;
-  font-family: 'Press Start 2P', cursive;
-  z-index: 1000;
-}
+    .section p {
+      font-size: 0.8rem;
+      color: #3fff00;
+      animation: rapidTextChange 10s infinite steps(10);
+    }
 
-.bg-switch-btn {
-  position: fixed;
-  top: 10px;
-  left: 10px;
-  background: none;
-  color: #ffffff;
-  font-size: 0.6rem;
-  cursor: pointer;
-  font-family: 'Press Start 2P', cursive;
-  z-index: 1000;
-}
+    @keyframes rapidTextChange {
+      0% { opacity: 1; }
+      50% { opacity: 0.6; }
+      100% { opacity: 1; }
+    }
 
-.nether-update {
-  text-align: center;
-  margin-top: 1rem;
-  font-size: 0.7rem;
-  color: #00ff00;
-  animation: flickerFast 0.4s infinite alternate;
-}
+    footer {
+      font-size: 0.75rem;
+      color: #d3d3d3;
+      margin-top: 2rem;
+      animation: fadeIn 2s ease-in;
+    }
 
-@keyframes flicker {
-  0%, 18%, 22%, 25%, 53%, 57%, 100% {
-    opacity: 1;
-  }
-  20%, 24%, 55% {
-    opacity: 0.3;
-  }
-}
+    .feedback-btn {
+      position: fixed;
+      bottom: 15px;
+      left: 15px;
+      background-color: #3f76e4;
+      color: #000;
+      padding: 10px 14px;
+      font-size: 0.6rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-family: 'Press Start 2P', cursive;
+      z-index: 1000;
+    }
 
-@keyframes flickerFast {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.2; }
-}
+    /* New music button */
+    .music-btn {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      background-color: transparent;
+      color: #ffffff;
+      font-size: 0.8rem;
+      border: none;
+      cursor: pointer;
+      font-family: 'Press Start 2P', cursive;
+      z-index: 1000;
+    }
 
-@keyframes fadeInDown {
-  from { transform: translateY(-100px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
+    @keyframes flicker {
+      0%, 18%, 22%, 25%, 53%, 57%, 100% {
+        opacity: 1;
+      }
+      20%, 24%, 55% {
+        opacity: 0.3;
+      }
+    }
 
-@keyframes fadeInUp {
-  from { transform: translateY(100px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
+    @keyframes fadeInDown {
+      from { transform: translateY(-100px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
+    @keyframes fadeInUp {
+      from { transform: translateY(100px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
 
-@keyframes typewriter {
-  from { width: 0 }
-  to { width: 100% }
-}
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
 
   </style>
 </head>
 <body>
-  <button class="bg-switch-btn" onclick="switchBG()">SWITCH BG</button>  <header>
+
+  <header>
     <h1>ANURAG</h1>
-  </header>  <nav>
+  </header>
+
+  <nav>
     <a href="https://anurvg.github.io/aboutc.github.io/" target="_blank">ABOUT</a>
     <a href="#">PROJECTS</a>
     <a href="https://www.instagram.com/anurvg.r/" target="_blank">INSTAGRAM</a>
-  </nav>  <section class="section">
-    <h2>WELCOME TO THE REALM</h2>
-    <p>Here lives the pixel mind of a curious creator. Dig deeper.</p>
-  </section>  <div class="nether-update">NETHER UPDATE SOON</div>  <footer>
-    &copy; 2025 Anurag | Powered by Redstone 🧱
-  </footer><button class="feedback-btn" onclick="window.location.href='https://anurvg.github.io/feedback.github.io/'">FEEDBACK</button> <button class="music-btn" onclick="toggleMusic()">CLICK ME FOR BACKGROUND-MUSIC</button>
+  </nav>
 
-  <!-- Background Music -->  <audio id="bg-music" autoplay loop>
+  <section class="section">
+    <h2>WELCOME TO THE BLOCKS</h2>
+    <p>Here lives the pixel mind of a curious creator. Dig deeper.</p>
+  </section>
+
+  <footer>
+    &copy; 2025 Anurag | Powered by Redstone 🧱
+  </footer>
+
+  <button class="feedback-btn" onclick="window.location.href='https://anurvg.github.io/feedback.github.io/'">FEEDBACK</button>
+
+  <!-- Music On/Off Button -->
+  <button class="music-btn" onclick="toggleMusic()">🎵 Music: ON/OFF</button>
+
+  <!-- Background Music -->
+  <audio id="bg-music" autoplay loop>
     <source src="assets/c4.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
-  </audio>  <script>
-    const music = document.getElementById('bg-music');
-    let playing = true;
+  </audio>
 
+  <script>
+    // Audio toggle functionality
+    let musicPlaying = true;
+    const music = document.getElementById('bg-music');
+    
     function toggleMusic() {
-      if (playing) {
+      if (musicPlaying) {
         music.pause();
+        musicPlaying = false;
       } else {
         music.play();
-      }
-      playing = !playing;
-    }
-
-    function switchBG() {
-      const current = document.body.style.backgroundImage;
-      if (current.includes('daym.jpg')) {
-        document.body.style.backgroundImage = "url('assets/nightm.jpg')";
-      } else {
-        document.body.style.backgroundImage = "url('assets/daym.jpg')";
+        musicPlaying = true;
       }
     }
+  </script>
 
-    window.addEventListener('DOMContentLoaded', () => {
-      music.volume = 0.5;
-      music.play().catch(() => {
-        const clickToPlay = () => {
-          music.play();
-          document.body.removeEventListener('click', clickToPlay);
-        };
-        document.body.addEventListener('click', clickToPlay);
-      });
-    });
-  </script></body>
-  </html>
+</body>
+</html>
