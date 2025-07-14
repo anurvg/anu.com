@@ -6,41 +6,31 @@
   <title>Anurag</title>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Press Start 2P', cursive;
       background: url('assets/daym.jpg') no-repeat center center/cover;
       color: #3fff00;
       overflow-x: hidden;
     }
-
     header, nav, section, footer {
-      padding: 2rem;
       text-align: center;
+      padding: 2rem;
     }
-
     header h1 {
       font-size: 2.5rem;
       color: #ffffff;
       animation: fadeInDown 1.5s ease-in-out;
     }
-
-    nav {
-      animation: fadeInDown 1.5s ease-in-out;
-    }
-
     nav a {
-      color: #00f6ff;
+      color: #00f7ff;
       margin: 0 1rem;
       text-decoration: none;
       font-weight: 600;
     }
-
+    nav a:hover {
+      color: #00ccff;
+    }
     .section {
       max-width: 800px;
       margin: 2rem auto;
@@ -50,35 +40,17 @@
       backdrop-filter: blur(3px);
       animation: fadeInUp 1.5s ease-in-out;
     }
-
     .section h2 {
       font-size: 1.4rem;
       margin-bottom: 1rem;
+      color: #e67e99;
       animation: flicker 1.5s infinite alternate;
-      color: #f38bac; /* Pig-like color */
     }
-
-    .section p {
+    #typewriter-text {
       font-size: 0.8rem;
       color: #3fff00;
-      animation: typewriter 2s steps(40) infinite alternate;
-      white-space: nowrap;
-      overflow: hidden;
-      border-right: 2px solid #3fff00;
+      min-height: 2rem;
     }
-
-    @keyframes typewriter {
-      from { width: 0; }
-      to { width: 100%; }
-    }
-
-    footer {
-      font-size: 0.75rem;
-      color: #d3d3d3;
-      margin-top: 2rem;
-      animation: fadeIn 2s ease-in;
-    }
-
     .feedback-btn {
       position: fixed;
       bottom: 15px;
@@ -93,56 +65,69 @@
       font-family: 'Press Start 2P', cursive;
       z-index: 1000;
     }
-
-    .music-btn {
+    .toggle-btn {
       position: fixed;
       top: 15px;
       right: 15px;
+      font-size: 0.6rem;
+      padding: 8px 10px;
       background: transparent;
-      color: #ffffff99;
-      font-size: 0.55rem;
-      font-family: 'Press Start 2P', cursive;
+      color: #3fff00;
       cursor: pointer;
       z-index: 1000;
     }
-
-    .switch-btn {
+    .switch-bg {
       position: fixed;
       top: 15px;
       left: 15px;
+      font-size: 0.6rem;
+      padding: 8px 10px;
       background: transparent;
-      color: #ffffff99;
-      font-size: 0.55rem;
-      font-family: 'Press Start 2P', cursive;
+      color: #3fff00;
       cursor: pointer;
       z-index: 1000;
     }
+    footer {
+      font-size: 0.75rem;
+      color: #d3d3d3;
+      margin-top: 2rem;
+      animation: fadeIn 2s ease-in;
+      position: relative;
+      z-index: 1;
+    }
 
-    .nether {
-      text-align: center;
-      margin-top: 1.5rem;
-      font-size: 0.65rem;
+    /* 🤠 popup */
+    .popup-container {
+      position: fixed;
+      bottom: 60px;
+      left: 10px;
+      display: flex;
+      align-items: flex-end;
+      z-index: 999;
+      opacity: 0;
+      animation: villagerAppear 1s ease forwards;
+    }
+    .villager-img {
+      height: 40px;
+      margin-right: 6px;
+    }
+    .speech-bubble {
+      background: rgba(255, 255, 255, 0.1);
       color: #3fff00;
-      animation: flicker-fast 1s infinite alternate;
+      border-radius: 8px;
+      padding: 8px;
+      font-size: 0.45rem;
+      max-width: 160px;
+    }
+
+    @keyframes villagerAppear {
+      0% { transform: translateY(40px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
     }
 
     @keyframes flicker {
-      0%, 18%, 22%, 25%, 53%, 57%, 100% {
-        opacity: 1;
-      }
-      20%, 24%, 55% {
-        opacity: 0.3;
-      }
-    }
-
-    @keyframes flicker-fast {
-      0%, 50%, 100% { opacity: 1; }
-      25%, 75% { opacity: 0.3; }
-    }
-
-    @keyframes fadeInDown {
-      from { transform: translateY(-100px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
+      0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity: 1; }
+      20%, 24%, 55% { opacity: 0.3; }
     }
 
     @keyframes fadeInUp {
@@ -150,20 +135,18 @@
       to { transform: translateY(0); opacity: 1; }
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+    @keyframes fadeInDown {
+      from { transform: translateY(-100px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
     }
   </style>
 </head>
 <body>
 
-  <button class="switch-btn" onclick="switchMood()">Switch Mood</button>
-  <button class="music-btn" onclick="toggleMusic()">MUSIC ON/OFF</button>
+  <button class="switch-bg" onclick="toggleBackground()">Switch Mood</button>
+  <button class="toggle-btn" onclick="toggleMusic()">Music: ON/OFF</button>
 
-  <header>
-    <h1>ANURAG</h1>
-  </header>
+  <header><h1>ANURAG</h1></header>
 
   <nav>
     <a href="https://anurvg.github.io/aboutc.github.io/" target="_blank">ABOUT</a>
@@ -173,27 +156,36 @@
 
   <section class="section">
     <h2>WELCOME TO THE REALM</h2>
-    <p id="typewriter">Here lives the pixel mind of a curious creator. Dig deeper.</p>
+    <p id="typewriter-text"></p>
   </section>
 
-  <div class="nether">NETHER UPDATE SOON</div>
-
   <footer>
-    &copy; 2025 Anurag | Powered by Redstone 🧱
+    © 2025 || Build by Anurag
   </footer>
+
+  <div class="popup-container" id="popup" style="display:none;">
+    <img src="assets/ek.jpg" class="villager-img" />
+    <div class="speech-bubble" id="popup-msg">Hey mate, how are you?</div>
+  </div>
 
   <button class="feedback-btn" onclick="window.location.href='https://anurvg.github.io/feedback.github.io/'">FEEDBACK</button>
 
   <audio id="bg-music" autoplay loop>
-    <source src="assets/c4.mp3" type="audio/mpeg">
+    <source src="assets/c4.mp3" type="audio/mpeg" />
     Your browser does not support the audio element.
   </audio>
 
   <script>
-    const music = document.getElementById("bg-music");
+    // Background switch
     let isNight = false;
+    function toggleBackground() {
+      document.body.style.backgroundImage = isNight ? "url('assets/daym.jpg')" : "url('assets/nightm.jpg')";
+      isNight = !isNight;
+    }
 
+    // Music toggle
     function toggleMusic() {
+      const music = document.getElementById("bg-music");
       if (music.paused) {
         music.play();
       } else {
@@ -201,19 +193,71 @@
       }
     }
 
-    function switchMood() {
-      isNight = !isNight;
-      document.body.style.background = isNight
-        ? "url('assets/nightm.jpg') no-repeat center center/cover"
-        : "url('assets/daym.jpg') no-repeat center center/cover";
+    // Typewriter
+    const lines = [
+      "⛏️ Crafting code block by block...",
+      "🧪 Brewing potions of creativity...",
+      "💾 Saving chunks of thoughts...",
+      "🔒 Encrypting portals to dreams...",
+      "🎮 Respawning after every failure...",
+      "🪓 Breaking silence like bedrock...",
+      "📜 Writing scripts from the Nether...",
+      "🧱 Building walls of resilience...",
+      "🧬 Debugging my inner Enderman...",
+      "🌌 Manifesting code like sorcery...",
+      "🐷 Whispering to pixelated pigs...",
+      "👾 Hacking through dimensions..."
+    ];
+
+    let i = 0;
+    let j = 0;
+    let currentLine = "";
+    let isDeleting = false;
+
+    function typeWriter() {
+      const element = document.getElementById("typewriter-text");
+
+      if (!isDeleting && j <= lines[i].length) {
+        currentLine = lines[i].substring(0, j++);
+        element.innerHTML = currentLine;
+        setTimeout(typeWriter, 50);
+      } else if (isDeleting && j > 0) {
+        currentLine = lines[i].substring(0, j--);
+        element.innerHTML = currentLine;
+        setTimeout(typeWriter, 30);
+      } else {
+        isDeleting = !isDeleting;
+        if (!isDeleting) {
+          i = (i + 1) % lines.length;
+        }
+        setTimeout(typeWriter, 1000);
+      }
+    }
+    window.onload = typeWriter;
+
+    // 🤠 Chat popup
+    const messages = [
+      "Hey mate, how are you?",
+      "Don't forget to leave feedback!",
+      "Explore the projects section!",
+      "Anurag coded this in survival mode.",
+      "Built with cobblestone logic 🧱"
+    ];
+    let msgIndex = 0;
+
+    function showPopup() {
+      const popup = document.getElementById('popup');
+      const msg = document.getElementById('popup-msg');
+      popup.style.display = 'flex';
+      msg.innerText = messages[msgIndex];
+      msgIndex = (msgIndex + 1) % messages.length;
+      setTimeout(() => { popup.style.display = 'none'; }, 3000);
     }
 
-    window.addEventListener("DOMContentLoaded", () => {
-      music.volume = 0.5;
-      music.play().catch(() => {
-        document.body.addEventListener("click", () => music.play(), { once: true });
-      });
-    });
+    setTimeout(() => {
+      showPopup();
+      setInterval(showPopup, 6000);
+    }, 5000);
   </script>
 </body>
 </html>
