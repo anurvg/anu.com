@@ -1,258 +1,158 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Anurag</title>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'Press Start 2P', cursive;
-      background: url('assets/daym.jpg') no-repeat center center/cover;
-      color: #3fff00;
-      overflow-x: hidden;
-      transition: background 1s ease-in-out;
-    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }body {
+  font-family: 'Press Start 2P', cursive;
+  background: url('assets/daym.jpg') no-repeat center center/cover;
+  color: #3fff00;
+  overflow-x: hidden;
+}
 
-    header, nav, section, footer {
-      text-align: center;
-    }
+header {
+  text-align: center;
+  padding: 1rem 1rem 0.2rem;
+}
 
-    header h1 {
-      font-size: 2.5rem;
-      color: #ffffff;
-      margin: 2rem 0 1rem;
-    }
+header h1 {
+  font-size: 2.2rem;
+  color: #ffffff;
+  animation: fadeInDown 1.5s ease-in-out;
+}
 
-    .top-buttons {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      margin-bottom: 1rem;
-    }
+.top-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  padding-bottom: 0.5rem;
+  font-size: 0.6rem;
+  color: #d3d3d3;
+}
 
-    .top-buttons button {
-      background: none;
-      color: #ccc;
-      font-size: 0.6rem;
-      border: none;
-      cursor: pointer;
-      font-family: 'Press Start 2P', cursive;
-    }
+nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+  animation: fadeInDown 1.5s ease-in-out;
+  margin: 0.5rem auto;
+}
 
-    nav {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      margin-bottom: 2rem;
-    }
+nav a {
+  color: #38d8f5;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.7rem;
+}
 
-    nav a {
-      text-decoration: none;
-      color: #38d8f5;
-    }
+nav a:hover {
+  color: #5ee5ff;
+}
 
-    .section {
-      max-width: 800px;
-      margin: 0 auto 2rem;
-      background-color: rgba(0, 0, 0, 0.35);
-      border-radius: 10px;
-      padding: 2rem;
-      backdrop-filter: blur(3px);
-    }
+.section {
+  max-width: 800px;
+  margin: 1rem auto;
+  background-color: rgba(0, 0, 0, 0.35);
+  border-radius: 10px;
+  padding: 1.2rem;
+  backdrop-filter: blur(3px);
+  animation: fadeInUp 1.5s ease-in-out;
+  text-align: center;
+}
 
-    .section h2 {
-      font-size: 1.2rem;
-      color: #ff8edb; /* Pig pink */
-      animation: flicker 1.5s infinite alternate;
-    }
+.section h2 {
+  font-size: 1.2rem;
+  margin-bottom: 0.8rem;
+  color: #ff8edb;
+  animation: flicker 1.5s infinite alternate;
+}
 
-    .section p {
-      font-size: 0.75rem;
-      color: #3fff00;
-      margin-top: 1rem;
-      min-height: 1.5rem;
-    }
+.section p {
+  font-size: 0.75rem;
+  color: #3fff00;
+  animation: typewriter 6s steps(60) infinite;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 1px solid #3fff00;
+}
 
-    footer {
-      font-size: 0.65rem;
-      color: #d3d3d3;
-      text-align: center;
-      margin-bottom: 3rem;
-    }
+footer {
+  font-size: 0.65rem;
+  color: #d3d3d3;
+  text-align: center;
+  padding-bottom: 3rem;
+  animation: fadeIn 2s ease-in;
+}
 
-    .feedback-btn {
-      position: fixed;
-      bottom: 10px;
-      left: 15px;
-      background: #3f76e4;
-      color: #000;
-      padding: 8px 12px;
-      font-size: 0.5rem;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-family: 'Press Start 2P', cursive;
-      z-index: 999;
-    }
+.feedback-btn {
+  position: fixed;
+  bottom: 15px;
+  left: 15px;
+  background-color: #3f76e4;
+  color: #000;
+  padding: 8px 12px;
+  font-size: 0.55rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: 'Press Start 2P', cursive;
+  z-index: 1000;
+}
 
-    /* EM popup */
-    .em-container {
-      position: fixed;
-      bottom: 45px;
-      left: 10px;
-      display: flex;
-      align-items: flex-end;
-      gap: 0.3rem;
-      z-index: 1000;
-      animation: showEm 1s ease-in-out forwards;
-    }
+@keyframes flicker {
+  0%, 18%, 22%, 25%, 53%, 57%, 100% {
+    opacity: 1;
+  }
+  20%, 24%, 55% {
+    opacity: 0.3;
+  }
+}
 
-    .em-container img {
-      width: 35px;
-      height: 35px;
-    }
+@keyframes typewriter {
+  0% { width: 0; }
+  100% { width: 100%; }
+}
 
-    .speech-bubble {
-      background-color: rgba(255, 255, 255, 0.8);
-      color: #000;
-      padding: 5px 10px;
-      border-radius: 8px;
-      font-size: 0.45rem;
-      max-width: 150px;
-    }
+@keyframes fadeInDown {
+  from { transform: translateY(-100px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
 
-    @keyframes flicker {
-      0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity: 1; }
-      20%, 24%, 55% { opacity: 0.3; }
-    }
+@keyframes fadeInUp {
+  from { transform: translateY(100px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
 
-    @keyframes showEm {
-      from { transform: translateY(100%); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
   </style>
 </head>
 <body>
-
   <header>
     <h1>ANURAG</h1>
-    <div class="top-buttons">
-      <button onclick="toggleMusic()">MUSIC ON/OFF</button>
-      <button onclick="switchMood()">SWITCH MOOD</button>
-    </div>
-  </header>
-
-  <nav>
+  </header>  <div class="top-buttons">
+    <span>MUSIC ON/OFF</span>
+    <span>SWITCH MOOD</span>
+  </div>  <nav>
     <a href="https://anurvg.github.io/aboutc.github.io/" target="_blank">ABOUT</a>
     <a href="#">PROJECTS</a>
     <a href="https://www.instagram.com/anurvg.r/" target="_blank">INSTAGRAM</a>
-  </nav>
-
-  <section class="section">
+  </nav>  <section class="section">
     <h2>WELCOME TO THE REALM</h2>
-    <p id="changing-text">Dig deeper...</p>
-  </section>
+    <p>Crafted thoughts in every pixel. | Building bits of curiosity. | Dreaming in blocks. | Entering the digital domain. | Punching trees. | Crafting life. | Breathing 1s & 0s. | Dig deeper. | Exploring the void. | Awaken, wanderer.</p>
+  </section>  <footer>
+    &copy; 2025 || Build by Anurag
+  </footer><button class="feedback-btn" onclick="window.location.href='https://anurvg.github.io/feedback.github.io/'">FEEDBACK</button>
 
-  <footer>
-    © 2025 || Build by Anurag
-  </footer>
-
-  <!-- Feedback button -->
-  <button class="feedback-btn" onclick="window.location.href='https://anurvg.github.io/feedback.github.io/'">FEEDBACK</button>
-
-  <!-- Enderman + 💭 -->
-  <div class="em-container" id="em-box" style="display: none;">
-    <img src="assets/em.jpg" alt="em" />
-    <div class="speech-bubble" id="em-msg">Hey mate! How are you?</div>
-  </div>
-
-  <!-- Audio -->
-  <audio id="bg-music" autoplay loop>
-    <source src="assets/c4.mp3" type="audio/mpeg">
-  </audio>
-
-  <!-- Scripts -->
-  <script>
-    const messages = [
-      "Hey mate! How are you?",
-      "Don’t break any blocks here!",
-      "Press F3 for magic (jk).",
-      "Please give Anurag feedback!",
-      "You smell like cookies.",
-      "Redstone is love ❤️",
-      "Obsidian is strong. So are you.",
-      "Creepers hate this site 😈",
-      "Remember to drink milk!",
-      "Build something crazy today.",
-      "Diamond found under this site!",
-      "Click feedback or I vanish!",
-      "Villager vibes 🔥",
-      "Anurag rules this realm.",
-      "Want shaders? Go outside.",
-      "This page is chunk loaded!",
-      "Use silk touch... on this ❤️",
-      "Spawn point set here.",
-      "Portal to dreams open now.",
-      "Feedback button = OP loot!",
-    ];
-    const paraMessages = [
-      "Here lives the pixel mind of a curious creator.",
-      "This realm is coded with passion & blocks.",
-      "Explore the digital stronghold.",
-      "Hack, build, explore, repeat.",
-      "A journey beyond obsidian walls.",
-      "Crafted thoughts in every pixel.",
-      "Welcome to Anurag's world!",
-      "More than 0s & 1s — it's emotion.",
-      "Scroll not, stare deep!",
-      "Where redstone meets reason.",
-      "Magic beneath the HTML bedrock.",
-      "Notch once dreamed of this.",
-      "Flicker. Flash. Code. Boom.",
-      "Do you even ender, bro?",
-      "Herobrine approved.",
-    ];
-
-    let paraIndex = 0;
-    setInterval(() => {
-      const para = document.getElementById("changing-text");
-      para.textContent = paraMessages[paraIndex];
-      paraIndex = (paraIndex + 1) % paraMessages.length;
-    }, 1500);
-
-    // Music
-    const music = document.getElementById("bg-music");
-    function toggleMusic() {
-      if (music.paused) music.play();
-      else music.pause();
-    }
-
-    // Mood
-    let isNight = false;
-    function switchMood() {
-      isNight = !isNight;
-      document.body.style.backgroundImage = isNight
-        ? "url('assets/nightm.jpg')"
-        : "url('assets/daym.jpg')";
-    }
-
-    // Enderman popups
-    let emIndex = 0;
-    const emBox = document.getElementById("em-box");
-    const emMsg = document.getElementById("em-msg");
-
-    setTimeout(() => {
-      setInterval(() => {
-        emMsg.textContent = messages[emIndex];
-        emIndex = (emIndex + 1) % messages.length;
-        emBox.style.display = "flex";
-        setTimeout(() => {
-          emBox.style.display = "none";
-        }, 3000);
-      }, 6000);
-    }, 5000);
-  </script>
 </body>
-      </html>
+                          </html>
