@@ -15,7 +15,7 @@
     body {
       font-family: 'Press Start 2P', cursive;
       background: url('assets/m.jpg') no-repeat center center/cover;
-      color: #00f7ff;
+      color: #ffffff;
       overflow-x: hidden;
     }
 
@@ -26,7 +26,7 @@
 
     header h1 {
       font-size: 2.5rem;
-      color: #00f7ff;
+      color: #ffffff;
       animation: fadeInDown 1.5s ease-in-out;
     }
 
@@ -35,21 +35,21 @@
     }
 
     nav a {
-      color: #00f7ff;
+      color: #3cf2f2;
       margin: 0 1rem;
       text-decoration: none;
       font-weight: 600;
     }
 
     nav a:hover {
-      color: #aaffff;
+      color: #00cccc;
     }
 
     .section {
       max-width: 800px;
       margin: 2rem auto;
       background-color: rgba(0, 0, 0, 0.35);
-      border: 2px dashed #00f7ff;
+      border: 2px dashed #3cf2f2;
       border-radius: 10px;
       padding: 2rem;
       backdrop-filter: blur(3px);
@@ -60,17 +60,21 @@
       font-size: 1.4rem;
       margin-bottom: 1rem;
       animation: flicker 1.5s infinite alternate;
-      color: #00f7ff;
+      color: #4e342e;
     }
 
     .section p {
       font-size: 0.8rem;
-      color: #b0f8ff;
+      color: #5fff5f;
+      height: 2rem;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 2px solid #5fff5f;
     }
 
     footer {
       font-size: 0.75rem;
-      color: #7ae4ff;
+      color: #d3d3d3;
       margin-top: 2rem;
       animation: fadeIn 2s ease-in;
     }
@@ -79,7 +83,7 @@
       position: fixed;
       bottom: 15px;
       left: 15px;
-      background-color: #00f7ff;
+      background-color: #3daee9;
       color: #000;
       padding: 10px 14px;
       font-size: 0.6rem;
@@ -129,7 +133,7 @@
 
   <section class="section">
     <h2>WELCOME TO THE BLOCKS</h2>
-    <p>Here lives the pixel mind of a curious creator. Dig deeper.</p>
+    <p id="typewriter"></p>
   </section>
 
   <footer>
@@ -158,6 +162,34 @@
         document.body.addEventListener('click', clickToPlay);
       });
     });
+
+    // Typewriter effect
+    const lines = [
+      "Here lives the pixel mind of a curious creator.",
+      "Dig deeper...",
+      "Press Start to begin.",
+      "This world isn’t flat, it’s made of blocks."
+    ];
+
+    let currentLine = 0;
+    let currentChar = 0;
+    const typeEl = document.getElementById('typewriter');
+
+    function type() {
+      if (currentChar <= lines[currentLine].length) {
+        typeEl.textContent = lines[currentLine].substring(0, currentChar);
+        currentChar++;
+        setTimeout(type, 50); // typing speed
+      } else {
+        setTimeout(() => {
+          currentChar = 0;
+          currentLine = (currentLine + 1) % lines.length;
+          type();
+        }, 1200); // delay before next line
+      }
+    }
+
+    type();
   </script>
 </body>
-    </html>
+  </html>
