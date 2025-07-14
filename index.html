@@ -1,5 +1,4 @@
-<!DOCTYPE html><html lang="en">
-<head>
+<!DOCTYPE html><html lang="en"><head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Anurag</title>
@@ -9,16 +8,15 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-    }body {
-  font-family: 'Press Start 2P', cursive;
-  background: url('assets/daym.jpg') no-repeat center center/cover;
-  color: #3fff00;
-  overflow: hidden;
-  height: 100vh;
-  width: 100vw;
-}
-
-header {
+    }
+    body {
+      font-family: 'Press Start 2P', cursive;
+      background: url('assets/daym.jpg') no-repeat center center/cover;
+      color: #3fff00;
+      overflow: hidden;
+      height: 100vh;
+      width: 100vw;
+    }header {
   text-align: center;
   padding: 1.5rem 1rem 0.2rem;
 }
@@ -53,23 +51,23 @@ nav a {
 }
 
 .section {
-  max-width: 90%;
+  max-width: 95%;
   margin: 0 auto;
   background-color: rgba(0, 0, 0, 0.3);
   border-radius: 10px;
-  padding: 1rem;
+  padding: 1.5rem;
   backdrop-filter: blur(2px);
   text-align: center;
 }
 
 .section h2 {
-  font-size: 1rem;
+  font-size: 1.1rem;
   color: #ff87c5;
-  margin-bottom: 0.8rem;
+  margin-bottom: 1rem;
 }
 
 .typewriter-text {
-  font-size: 0.55rem;
+  font-size: 0.6rem;
   color: #00ff00;
   white-space: nowrap;
   overflow: hidden;
@@ -93,20 +91,6 @@ footer {
   font-size: 0.55rem;
   color: #ccc;
   margin-top: 0.5rem;
-}
-
-.feedback-btn {
-  position: fixed;
-  bottom: 10px;
-  left: 10px;
-  background-color: #3f76e4;
-  color: #000;
-  padding: 6px 10px;
-  font-size: 0.55rem;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-family: 'Press Start 2P', cursive;
 }
 
 .villager-popup {
@@ -138,23 +122,26 @@ footer {
 
   </style>
 </head>
-<body>  <header>
+<body>
+  <header>
     <h1>ANURAG</h1>
-  </header>  <div class="controls">
+  </header>
+  <div class="controls">
     <span id="musicToggle">MUSIC ON/OFF</span>
     <span id="moodToggle">SWITCH MOOD</span>
-  </div>  <nav>
+  </div>
+  <nav>
     <a href="https://anurvg.github.io/aboutc.github.io/" target="_blank">ABOUT</a>
     <a href="#">PROJECTS</a>
     <a href="https://www.instagram.com/anurvg.r/" target="_blank">INSTAGRAM</a>
-  </nav>  <section class="section">
+  </nav>
+  <section class="section">
     <h2>WELCOME TO THE REALM</h2>
     <p class="typewriter-text" id="typewriter"></p>
-  </section>  <footer>
+  </section>
+  <footer>
     &copy; 2025 || Build by Anurag
-  </footer><button class="feedback-btn" onclick="window.location.href='https://anurvg.github.io/feedback.github.io/'">FEEDBACK</button>
-
-  <div class="villager-popup" id="villager" style="display: none;">
+  </footer>  <div class="villager-popup" id="villager" style="display: none;">
     <img src="assets/em.jpg" alt="Villager">
     <div class="message" id="villagerMsg">Hey there!</div>
   </div>  <audio id="bg-music" autoplay loop>
@@ -220,7 +207,12 @@ footer {
       "Exploring imagination through code.",
       "A realm made of dreams and logic.",
       "Infinite creativity lives here.",
-      "Press start to begin the story."
+      "Press start to begin the story.",
+      "Pixels whisper secrets.",
+      "This isn't just code — it's magic.",
+      "Decode the blocky mysteries.",
+      "Touch grass. Then code it.",
+      "Anurag breathes creativity."
     ];
     let twIndex = 0;
     let charIndex = 0;
@@ -229,16 +221,16 @@ footer {
     function typeLine() {
       if (charIndex <= typewriterLines[twIndex].length) {
         twElem.textContent = typewriterLines[twIndex].substring(0, charIndex++);
-        setTimeout(typeLine, 70);
+        setTimeout(typeLine, 60);
       } else {
         setTimeout(() => {
           charIndex = 0;
           twIndex = (twIndex + 1) % typewriterLines.length;
           typeLine();
-        }, 1500);
+        }, 1200);
       }
     }
 
     typeLine();
   </script></body>
-</html>
+  </html>
