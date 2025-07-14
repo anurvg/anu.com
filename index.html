@@ -4,33 +4,67 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Anurag</title>
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
       font-family: 'Press Start 2P', cursive;
       background: url('assets/daym.jpg') no-repeat center center/cover;
       color: #3fff00;
       overflow-x: hidden;
+      transition: background-image 0.5s ease-in-out;
     }
-    header, nav, section, footer {
-      text-align: center;
+
+    header {
       padding: 2rem;
+      text-align: center;
     }
+
     header h1 {
       font-size: 2.5rem;
       color: #ffffff;
       animation: fadeInDown 1.5s ease-in-out;
     }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: -1rem;
+      margin-bottom: 1rem;
+    }
+
+    .buttons button {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 0.5rem;
+      padding: 6px 10px;
+      background-color: transparent;
+      color: #3fff00;
+      border: none;
+      cursor: pointer;
+    }
+
+    nav {
+      text-align: center;
+      animation: fadeInDown 1.5s ease-in-out;
+    }
+
     nav a {
-      color: #00f7ff;
+      color: #3fdfff;
       margin: 0 1rem;
       text-decoration: none;
       font-weight: 600;
     }
+
     nav a:hover {
       color: #00ccff;
     }
+
     .section {
       max-width: 800px;
       margin: 2rem auto;
@@ -39,18 +73,29 @@
       padding: 2rem;
       backdrop-filter: blur(3px);
       animation: fadeInUp 1.5s ease-in-out;
+      text-align: center;
     }
+
     .section h2 {
       font-size: 1.4rem;
       margin-bottom: 1rem;
-      color: #e67e99;
-      animation: flicker 1.5s infinite alternate;
+      color: #d48e4c;
     }
-    #typewriter-text {
+
+    .section p {
       font-size: 0.8rem;
       color: #3fff00;
-      min-height: 2rem;
+      animation: rapidTextChange 2s infinite alternate;
     }
+
+    footer {
+      font-size: 0.75rem;
+      color: #d3d3d3;
+      text-align: center;
+      margin-top: 4rem;
+      padding-bottom: 1.5rem;
+    }
+
     .feedback-btn {
       position: fixed;
       bottom: 15px;
@@ -65,88 +110,64 @@
       font-family: 'Press Start 2P', cursive;
       z-index: 1000;
     }
-    .toggle-btn {
-      position: fixed;
-      top: 15px;
-      right: 15px;
-      font-size: 0.6rem;
-      padding: 8px 10px;
-      background: transparent;
-      color: #3fff00;
-      cursor: pointer;
-      z-index: 1000;
-    }
-    .switch-bg {
-      position: fixed;
-      top: 15px;
-      left: 15px;
-      font-size: 0.6rem;
-      padding: 8px 10px;
-      background: transparent;
-      color: #3fff00;
-      cursor: pointer;
-      z-index: 1000;
-    }
-    footer {
-      font-size: 0.75rem;
-      color: #d3d3d3;
-      margin-top: 2rem;
-      animation: fadeIn 2s ease-in;
-      position: relative;
-      z-index: 1;
-    }
 
-    /* 🤠 popup */
+    /* Villager Popup */
     .popup-container {
       position: fixed;
       bottom: 60px;
       left: 10px;
       display: flex;
       align-items: flex-end;
+      gap: 8px;
       z-index: 999;
-      opacity: 0;
-      animation: villagerAppear 1s ease forwards;
+      animation: popIn 1s ease-in-out;
     }
+
     .villager-img {
+      width: 40px;
       height: 40px;
-      margin-right: 6px;
-    }
-    .speech-bubble {
-      background: rgba(255, 255, 255, 0.1);
-      color: #3fff00;
-      border-radius: 8px;
-      padding: 8px;
-      font-size: 0.45rem;
-      max-width: 160px;
     }
 
-    @keyframes villagerAppear {
-      0% { transform: translateY(40px); opacity: 0; }
-      100% { transform: translateY(0); opacity: 1; }
+    .villager-text {
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 6px 8px;
+      border-radius: 6px;
+      font-size: 0.5rem;
+      color: #fff;
+      max-width: 150px;
     }
 
-    @keyframes flicker {
-      0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity: 1; }
-      20%, 24%, 55% { opacity: 0.3; }
+    @keyframes rapidTextChange {
+      0% { opacity: 1; }
+      50% { opacity: 0.6; }
+      100% { opacity: 1; }
     }
 
-    @keyframes fadeInUp {
-      from { transform: translateY(100px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
+    @keyframes popIn {
+      from { transform: scale(0); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
     }
 
     @keyframes fadeInDown {
       from { transform: translateY(-100px); opacity: 0; }
       to { transform: translateY(0); opacity: 1; }
     }
+
+    @keyframes fadeInUp {
+      from { transform: translateY(100px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
   </style>
 </head>
 <body>
+  <header>
+    <h1>ANURAG</h1>
+  </header>
 
-  <button class="switch-bg" onclick="toggleBackground()">Switch Mood</button>
-  <button class="toggle-btn" onclick="toggleMusic()">Music: ON/OFF</button>
-
-  <header><h1>ANURAG</h1></header>
+  <div class="buttons">
+    <button onclick="toggleMusic()">MUSIC: ON/OFF</button>
+    <button onclick="toggleMood()">SWITCH MOOD</button>
+  </div>
 
   <nav>
     <a href="https://anurvg.github.io/aboutc.github.io/" target="_blank">ABOUT</a>
@@ -156,17 +177,12 @@
 
   <section class="section">
     <h2>WELCOME TO THE REALM</h2>
-    <p id="typewriter-text"></p>
+    <p id="changing-para">This world is built with pixels, passion, and purpose. Explore the redstone-coded mind. Dive into realms where logic meets imagination, blocks stack to dreams, and the code whispers secrets beneath bedrock.</p>
   </section>
 
   <footer>
     © 2025 || Build by Anurag
   </footer>
-
-  <div class="popup-container" id="popup" style="display:none;">
-    <img src="assets/ek.jpg" class="villager-img" />
-    <div class="speech-bubble" id="popup-msg">Hey mate, how are you?</div>
-  </div>
 
   <button class="feedback-btn" onclick="window.location.href='https://anurvg.github.io/feedback.github.io/'">FEEDBACK</button>
 
@@ -175,89 +191,60 @@
     Your browser does not support the audio element.
   </audio>
 
+  <div id="popup" class="popup-container" style="display:none;">
+    <img src="assets/em.jpg" class="villager-img" />
+    <div class="villager-text" id="villager-msg">Hey mate, how are you?</div>
+  </div>
+
   <script>
-    // Background switch
-    let isNight = false;
-    function toggleBackground() {
-      document.body.style.backgroundImage = isNight ? "url('assets/daym.jpg')" : "url('assets/nightm.jpg')";
-      isNight = !isNight;
+    // Background Image Toggle
+    let isDay = true;
+    function toggleMood() {
+      document.body.style.backgroundImage = isDay
+        ? "url('assets/nightm.jpg')"
+        : "url('assets/daym.jpg')";
+      isDay = !isDay;
     }
 
-    // Music toggle
+    // Music ON/OFF
     function toggleMusic() {
-      const music = document.getElementById("bg-music");
-      if (music.paused) {
-        music.play();
-      } else {
-        music.pause();
-      }
+      const music = document.getElementById('bg-music');
+      music.paused ? music.play() : music.pause();
     }
 
-    // Typewriter
-    const lines = [
-      "⛏️ Crafting code block by block...",
-      "🧪 Brewing potions of creativity...",
-      "💾 Saving chunks of thoughts...",
-      "🔒 Encrypting portals to dreams...",
-      "🎮 Respawning after every failure...",
-      "🪓 Breaking silence like bedrock...",
-      "📜 Writing scripts from the Nether...",
-      "🧱 Building walls of resilience...",
-      "🧬 Debugging my inner Enderman...",
-      "🌌 Manifesting code like sorcery...",
-      "🐷 Whispering to pixelated pigs...",
-      "👾 Hacking through dimensions..."
-    ];
-
-    let i = 0;
-    let j = 0;
-    let currentLine = "";
-    let isDeleting = false;
-
-    function typeWriter() {
-      const element = document.getElementById("typewriter-text");
-
-      if (!isDeleting && j <= lines[i].length) {
-        currentLine = lines[i].substring(0, j++);
-        element.innerHTML = currentLine;
-        setTimeout(typeWriter, 50);
-      } else if (isDeleting && j > 0) {
-        currentLine = lines[i].substring(0, j--);
-        element.innerHTML = currentLine;
-        setTimeout(typeWriter, 30);
-      } else {
-        isDeleting = !isDeleting;
-        if (!isDeleting) {
-          i = (i + 1) % lines.length;
-        }
-        setTimeout(typeWriter, 1000);
-      }
-    }
-    window.onload = typeWriter;
-
-    // 🤠 Chat popup
+    // Villager popup messages
     const messages = [
       "Hey mate, how are you?",
-      "Don't forget to leave feedback!",
-      "Explore the projects section!",
-      "Anurag coded this in survival mode.",
-      "Built with cobblestone logic 🧱"
+      "Did you leave a feedback yet?",
+      "Want to explore my realm?",
+      "This base is Anurag-built 😎",
+      "You're not alone in the blocks.",
+      "Share your thoughts, traveler!",
+      "Feedback helps enchant the site!"
     ];
-    let msgIndex = 0;
 
-    function showPopup() {
-      const popup = document.getElementById('popup');
-      const msg = document.getElementById('popup-msg');
-      popup.style.display = 'flex';
-      msg.innerText = messages[msgIndex];
-      msgIndex = (msgIndex + 1) % messages.length;
-      setTimeout(() => { popup.style.display = 'none'; }, 3000);
-    }
+    let popup = document.getElementById('popup');
+    let msgBox = document.getElementById('villager-msg');
+    let index = 0;
 
     setTimeout(() => {
-      showPopup();
-      setInterval(showPopup, 6000);
+      popup.style.display = 'flex';
+      cycleMessages();
     }, 5000);
+
+    function cycleMessages() {
+      msgBox.textContent = messages[index];
+      index = (index + 1) % messages.length;
+      popup.style.display = 'flex';
+
+      setTimeout(() => {
+        popup.style.display = 'none';
+        setTimeout(() => {
+          popup.style.display = 'flex';
+          cycleMessages();
+        }, 3000);
+      }, 3000);
+    }
   </script>
 </body>
-</html>
+  </html>
