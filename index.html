@@ -1,265 +1,217 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Anurag</title>
-  <link rel="icon" type="image/x-icon" href="favicon.ico" />
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Press Start 2P', cursive;
-      background: url('assets/daym.jpg') no-repeat center center/cover;
-      color: #3fff00;
-      overflow: hidden;
-      height: 100vh;
-      width: 100vw;
-    }
-
-    header {
-      text-align: center;
-      padding: 1.5rem 1rem 0.5rem;
-    }
-
-    header h1 {
-      font-size: 1.8rem;
-      color: white;
-    }
-
-    .controls {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      font-size: 0.55rem;
-      color: #ccc;
-      padding-bottom: 1.2rem;
-    }
-
-    nav {
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.6rem;
-      margin-bottom: 1rem;
-    }
-
-    nav a {
-      color: #00d8ff;
-      text-decoration: none;
-      font-size: 0.7rem;
-    }
-
-    .section {
-      max-width: 90%;
-      margin: 0 auto;
-      background-color: rgba(0, 0, 0, 0.3);
-      border-radius: 10px;
-      padding: 1.6rem;
-      backdrop-filter: blur(2px);
-      text-align: center;
-      min-height: 160px;
-    }
-
-    .section h2 {
-      font-size: 1rem;
-      color: #ff87c5;
-      margin-bottom: 1rem;
-    }
-
-    #fact-box {
-      font-size: 0.52rem;
-      color: #00ff00;
-      transition: opacity 0.3s ease-in-out;
-    }
-
-    footer {
-      text-align: center;
-      font-size: 0.55rem;
-      color: #ccc;
-      margin-top: 0.8rem;
-    }
-
-    footer::after {
-      content: ' .';
-      animation: dots 1.2s infinite steps(3);
-    }
-
-    @keyframes dots {
-      0% { content: ' .'; }
-      33% { content: ' ..'; }
-      66% { content: ' ...'; }
-      100% { content: ' .'; }
-    }
-
-    .feedback-btn {
-      position: fixed;
-      bottom: 10px;
-      left: 10px;
-      background-color: #3f76e4;
-      color: #000;
-      padding: 6px 10px;
-      font-size: 0.55rem;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      font-family: 'Press Start 2P', cursive;
-    }
-
-    .villager-popup {
-      position: fixed;
-      bottom: 2.5rem;
-      left: 10px;
-      display: flex;
-      align-items: flex-end;
-      gap: 6px;
-      animation: appearVillager 1s ease forwards;
-    }
-
-    .villager-popup img {
-      width: 30px;
-    }
-
-    .villager-popup .message {
-      background: rgba(255, 255, 255, 0.1);
-      color: #00ff00;
-      padding: 5px 10px;
-      border-radius: 8px;
-      font-size: 0.52rem;
-    }
-
-    @keyframes appearVillager {
-      from { opacity: 0; transform: translateX(-20px); }
-      to { opacity: 1; transform: translateX(0); }
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <h1>ANURAG</h1>
-  </header>
-
-  <div class="controls">
-    <span id="musicToggle">MUSIC ON/OFF</span>
-    <span id="moodToggle">SWITCH TIME</span>
-  </div>
-
-  <nav>
-    <a href="https://anurvg.github.io/aboutc.github.io/" target="_blank">ABOUT</a>
-    <a href="#">PROJECTS</a>
-    <a href="https://www.instagram.com/anurvg.r/" target="_blank">INSTAGRAM</a>
-  </nav>
-
-  <section class="section">
-    <h2>WELCOME TO THE REALM</h2>
-    <div id="fact-box">Loading...</div>
-  </section>
-
-  <footer>
-    &copy; 2025 || Build by Anurag
-  </footer>
-
-  <button class="feedback-btn" onclick="window.location.href='https://anurvg.github.io/feedback.github.io/'">FEEDBACK</button>
-
-  <div class="villager-popup" id="villager" style="display: none;">
-    <img src="assets/em.jpg" alt="Villager">
-    <div class="message" id="villagerMsg">Hey there!</div>
-  </div>
-
-  <audio id="bg-music" autoplay loop>
-    <source src="assets/c4.mp3" type="audio/mpeg">
-  </audio>
-
-  <script>
-    const facts = [
-      "Ghasts sound like crying cats.",
-      "Herobrine was never real. Or was he?",
-      "You can't sleep in the Nether.",
-      "Creepers were a coding error.",
-      "Endermen speak backward.",
-      "Villagers gossip secretly.",
-      "Music discs hint a dark past.",
-      "The void is watching.",
-      "Don’t dig straight down!",
-      "Even pigs have legends.",
-      "Eyes of Ender always know.",
-      "You’re not alone underground.",
-      "There’s something behind the walls.",
-      "Redstone runs like blood.",
-      "Every seed hides a secret.",
-      "The End is only the beginning.",
-      "Why do the animals watch you?",
-      "You were never supposed to find this realm.",
-      "Built by block. Lived by none.",
-      "Echoes in the caves aren't yours."
-    ];
-
-    let factIndex = 0;
-    const factBox = document.getElementById("fact-box");
-
-    function updateFacts() {
-      factBox.style.opacity = 0;
-
-      setTimeout(() => {
-        const factSet = facts.slice(factIndex, factIndex + 4).join("<br><br>");
-        factBox.innerHTML = factSet;
-        factIndex = (factIndex + 4) % facts.length;
-        factBox.style.opacity = 1;
-      }, 200);
-
-      setTimeout(updateFacts, 6000);
-    }
-
-    setTimeout(updateFacts, 1000);
-
-    const messages = [
-      "Hey mate, how are you?",
-      "Please give Anurag a feedback!",
-      "Welcome to the pixel world!",
-      "Don't forget to check the projects.",
-      "This realm is yours too!",
-      "Type fast, think faster.",
-      "💬 Click feedback below.",
-      "Are you enjoying this realm?",
-      "Anurag built this block by block.",
-      "Feel the redstone magic.",
-      "Say hi to the Enderman!"
-    ];
-
-    let msgIndex = 0;
-    function showVillager() {
-      const villager = document.getElementById('villager');
-      const villagerMsg = document.getElementById('villagerMsg');
-      villager.style.display = 'flex';
-      villagerMsg.textContent = messages[msgIndex];
-      msgIndex = (msgIndex + 1) % messages.length;
-
-      setTimeout(() => {
-        villager.style.display = 'none';
-        setTimeout(showVillager, 6000);
-      }, 3500);
-    }
-
-    setTimeout(showVillager, 5000);
-
-    const music = document.getElementById('bg-music');
-    document.getElementById('musicToggle').onclick = () => {
-      if (music.paused) music.play(); else music.pause();
-    };
-
-    let isDay = true;
-    document.getElementById('moodToggle').onclick = () => {
-      document.body.style.backgroundImage = isDay
-        ? "url('assets/nightm.jpg')"
-        : "url('assets/daym.jpg')";
-      isDay = !isDay;
-    };
-  </script>
-</body>
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+  <meta charset="UTF-8" />  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />  
+  <title>Anurag</title>  
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />  
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">  
+  <style>  
+    * { margin: 0; padding: 0; box-sizing: border-box; }  
+    body {  
+      font-family: 'Press Start 2P', cursive;  
+      background: url('assets/daym.jpg') no-repeat center center/cover;  
+      color: #3fff00;  
+      overflow: hidden;  
+      height: 100vh;  
+      width: 100vw;  
+    }  
+    header { text-align: center; padding: 1.5rem 1rem 0.5rem; }  
+    header h1 { font-size: 1.8rem; color: white; }  
+    .controls {  
+      display: flex;  
+      justify-content: center;  
+      gap: 10px;  
+      font-size: 0.55rem;  
+      color: #ccc;  
+      padding-bottom: 1.2rem;  
+    }  
+    nav {  
+      text-align: center;  
+      display: flex;  
+      flex-direction: column;  
+      align-items: center;  
+      gap: 0.6rem;  
+      margin-bottom: 1rem;  
+    }  
+    nav a {  
+      color: #00d8ff;  
+      text-decoration: none;  
+      font-size: 0.7rem;  
+    }  
+    .section {  
+      max-width: 90%;  
+      margin: 0 auto;  
+      background-color: rgba(0, 0, 0, 0.3);  
+      border-radius: 10px;  
+      padding: 1.6rem;  
+      backdrop-filter: blur(2px);  
+      text-align: center;  
+      min-height: 160px;  
+    }  
+    .section h2 {  
+      font-size: 1rem;  
+      color: #ff87c5;  
+      margin-bottom: 1rem;  
+    }  
+    #fact-box {  
+      font-size: 0.52rem;  
+      color: #00ff00;  
+      transition: opacity 0.3s ease-in-out;  
+    }  
+    footer {  
+      text-align: center;  
+      font-size: 0.55rem;  
+      color: #ccc;  
+      margin-top: 0.8rem;  
+    }  
+    footer::after {  
+      content: ' .';  
+      animation: dots 1.2s infinite steps(3);  
+    }  
+    @keyframes dots {  
+      0% { content: ' .'; }  
+      33% { content: ' ..'; }  
+      66% { content: ' ...'; }  
+      100% { content: ' .'; }  
+    }  
+    .feedback-btn {  
+      position: fixed;  
+      bottom: 10px;  
+      left: 10px;  
+      background-color: #3f76e4;  
+      color: #000;  
+      padding: 6px 10px;  
+      font-size: 0.55rem;  
+      border: none;  
+      border-radius: 4px;  
+      cursor: pointer;  
+      font-family: 'Press Start 2P', cursive;  
+    }  
+    .villager-popup {  
+      position: fixed;  
+      bottom: 2.5rem;  
+      left: 10px;  
+      display: flex;  
+      align-items: flex-end;  
+      gap: 6px;  
+      animation: appearVillager 1s ease forwards;  
+    }  
+    .villager-popup img { width: 30px; }  
+    .villager-popup .message {  
+      background: rgba(255, 255, 255, 0.1);  
+      color: #00ff00;  
+      padding: 5px 10px;  
+      border-radius: 8px;  
+      font-size: 0.52rem;  
+    }  
+    @keyframes appearVillager {  
+      from { opacity: 0; transform: translateX(-20px); }  
+      to { opacity: 1; transform: translateX(0); }  
+    }  
+  </style>  
+</head>  
+<body>  
+  <header>  
+    <h1>ANURAG</h1>  
+  </header>  
+  <div class="controls">  
+    <span id="musicToggle">MUSIC ON/OFF</span>  
+    <span id="moodToggle">SWITCH TIME</span>  
+  </div>  
+  <nav>  
+    <a href="https://anurvg.github.io/aboutc.github.io/" target="_blank">ABOUT</a>  
+    <a href="https://anurvg.github.io/projects" target="_blank">PROJECTS</a>  
+    <a href="https://www.instagram.com/anurvg.r/" target="_blank">INSTAGRAM</a>  
+  </nav>  
+  <section class="section">  
+    <h2>WELCOME TO THE REALM</h2>  
+    <div id="fact-box">Loading...</div>  
+  </section>  
+  <footer>  
+    &copy; 2025 || Build by Anurag  
+  </footer>  
+  <button class="feedback-btn" onclick="window.location.href='https://anurvg.github.io/feedback.github.io/'">FEEDBACK</button>  
+  <div class="villager-popup" id="villager" style="display: none;">  
+    <img src="assets/em.jpg" alt="Villager">  
+    <div class="message" id="villagerMsg">Hey there!</div>  
+  </div>  
+  <audio id="bg-music" autoplay loop>  
+    <source src="assets/c4.mp3" type="audio/mpeg">  
+  </audio>  
+  <script>  
+    const facts = [  
+      "Ghasts sound like crying cats.",  
+      "Herobrine was never real. Or was he?",  
+      "You can't sleep in the Nether.",  
+      "Creepers were a coding error.",  
+      "Endermen speak backward.",  
+      "Villagers gossip secretly.",  
+      "Music discs hint a dark past.",  
+      "The void is watching.",  
+      "Don’t dig straight down!",  
+      "Even pigs have legends.",  
+      "Eyes of Ender always know.",  
+      "You’re not alone underground.",  
+      "There’s something behind the walls.",  
+      "Redstone runs like blood.",  
+      "Every seed hides a secret.",  
+      "The End is only the beginning.",  
+      "Why do the animals watch you?",  
+      "You were never supposed to find this realm.",  
+      "Built by block. Lived by none.",  
+      "Echoes in the caves aren't yours."  
+    ];  
+    let factIndex = 0;  
+    const factBox = document.getElementById("fact-box");  
+    function updateFacts() {  
+      factBox.style.opacity = 0;  
+      setTimeout(() => {  
+        const factSet = facts.slice(factIndex, factIndex + 4).join("<br><br>");  
+        factBox.innerHTML = factSet;  
+        factIndex = (factIndex + 4) % facts.length;  
+        factBox.style.opacity = 1;  
+      }, 200);  
+      setTimeout(updateFacts, 6000);  
+    }  
+    setTimeout(updateFacts, 1000);  
+    const messages = [  
+      "Hey mate, how are you?",  
+      "Please give Anurag a feedback!",  
+      "Welcome to the pixel world!",  
+      "Don't forget to check the projects.",  
+      "This realm is yours too!",  
+      "Type fast, think faster.",  
+      "💬 Click feedback below.",  
+      "Are you enjoying this realm?",  
+      "Anurag built this block by block.",  
+      "Feel the redstone magic.",  
+      "Say hi to the Enderman!"  
+    ];  
+    let msgIndex = 0;  
+    function showVillager() {  
+      const villager = document.getElementById('villager');  
+      const villagerMsg = document.getElementById('villagerMsg');  
+      villager.style.display = 'flex';  
+      villagerMsg.textContent = messages[msgIndex];  
+      msgIndex = (msgIndex + 1) % messages.length;  
+      setTimeout(() => {  
+        villager.style.display = 'none';  
+        setTimeout(showVillager, 6000);  
+      }, 3500);  
+    }  
+    setTimeout(showVillager, 5000);  
+    const music = document.getElementById('bg-music');  
+    document.getElementById('musicToggle').onclick = () => {  
+      if (music.paused) music.play(); else music.pause();  
+    };  
+    let isDay = true;  
+    document.getElementById('moodToggle').onclick = () => {  
+      document.body.style.backgroundImage = isDay  
+        ? "url('assets/nightm.jpg')"  
+        : "url('assets/daym.jpg')";  
+      isDay = !isDay;  
+    };  
+  </script>  
+</body>  
 </html>
